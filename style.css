@@ -149,3 +149,7 @@ ul li p {
   padding: 0;
   font-size: 12px;
 }
+
+.no-border {
+  border-bottom: 0;
+}

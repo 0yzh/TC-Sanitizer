@@ -158,6 +158,9 @@
         padding: 0;
         font-size: 12px;
       }
+      .no-border {
+        border-bottom: 0;
+      }
     </style>
   </head>
   <body>
@@ -170,8 +173,11 @@
     <main>
       <p>
         - Replaces dates and times in legal / disclaimer copies with sanitized
-        versions using <span class="note">&amp;#xfeff;</span>. Eg: July -->
-        <span class="note">J&amp;#xfeff;u&amp;#xfeff;l&amp;#xfeff;y</span>
+        versions using <span class="note no-border">&amp;#xfeff;</span>. Eg:
+        July -->
+        <span class="note no-border"
+          >J&amp;#xfeff;u&amp;#xfeff;l&amp;#xfeff;y</span
+        >
       </p>
       <p>
         - Useful if you need to unlink dates and times on mobile devices or
@@ -212,8 +218,9 @@
     <footer>
       <p>
         <span class="note"
-          >Questions & concerns -
-          <a href="mailto:huyb@google.com">@huyb</a></span
+          ><a href="https://github.com/0yzh/TC-Sanitizer" target="_blank"
+            >Source code</a
+          ></span
         >
       </p>
     </footer>
