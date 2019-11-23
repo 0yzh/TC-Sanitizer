@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="./style.css" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin: 0 auto;
+        max-width: 70em;
+        line-height: 1.5;
+        padding: 4em 1em;
+        text-align: center;
+        color: rgb(82, 87, 92);
+      }
+
+      h1,
+      h3 {
+        font-weight: 500;
+        color: #333;
+      }
+
+      h4 {
+        text-align: left;
+        padding-left: 22px;
+        margin: 20px 0 10px;
+      }
+
+      .title {
+        margin-top: 1em;
+        margin-bottom: 2em;
+        padding-top: 1em;
+        text-align: center;
+      }
+
+      .btn {
+        background-color: #69c;
+        border-radius: 16px;
+        border: none;
+        color: #ffffff;
+        display: block;
+        font-size: 14px;
+        line-height: 32px;
+        outline: none;
+        text-transform: capitalize;
+        padding: 0 20px;
+        margin-left: 1.5em;
+        margin-bottom: 7em;
+      }
+
+      .btn:hover {
+        cursor: pointer;
+      }
+
+      #input {
+        vertical-align: top;
+        display: inline;
+      }
+
+      #input:after {
+        clear: both;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 25px;
+        padding: 0 0 10px 22px;
+        text-align: left;
+      }
+
+      main > div {
+        float: left;
+        width: 50%;
+      }
+
+      main:after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      .hidden-1 {
+        display: none;
+      }
+
+      .shown {
+        display: block;
+      }
+
+      .index-number-0 {
+        padding-top: 0;
+      }
+
+      textarea {
+        margin-bottom: 2em;
+        margin-left: 1.5em;
+        margin-top: 5.68em;
+        padding: 10px;
+        line-height: 1.5;
+        border: 1px solid #ccc;
+        width: 520px;
+        height: 220px;
+        background: #f5f7f9;
+        color: #566b78;
+      }
+
+      textarea,
+      input {
+        outline: none;
+      }
+
+      #input textarea {
+        border-left: 2px solid #69c;
+      }
+
+      #output textarea {
+        border-right: 2px solid #69c;
+      }
+
+      .note {
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        background-color: rgba(187,239,253,0.3);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 0;
+        color: #1a1a1a;
+        margin: 1.238em 0 0 .2em;
+      }
+
+      .note a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul,
+      ul li {
+        margin: 0;
+        text-indent: 0;
+        list-style-type: 0;
+      }
+
+      ul {
+        padding: 0 0 0 3.5em;
+      }
+
+      ul li p {
+        padding: 0;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1 class="title">Date and time sanitizer</h1>
+      </nav>
+    </header>
+
+    <main>
+      <p>
+        - Replaces dates and times in legal / disclaimer copies with sanitized
+        versions using <span class="note">&amp;#xfeff;</span>. Eg: July -->
+        <span class="note">J&amp;#xfeff;u&amp;#xfeff;l&amp;#xfeff;y</span>
+      </p>
+      <p>
+        - Useful if you need to unlink dates and times on mobile devices or
+        email clients.
+      </p>
+      <p>
+        - This tool uses Regular Expression and the test case can be found at:
+        <span class="note"
+          ><a href="https://regexr.com/4pd70" target="_blank"
+            >https://regexr.com/4pd70</a
+          ></span
+        >
+      </p>
+      <h4>
+        Currently supports:
+      </h4>
+      <ul>
+        <li>
+          <p>Dates: ex, "Jan" | "January 1, 2020"</p>
+        </li>
+        <li>
+          <p>Times: ex, "11:59am" | "12:00pm"</p>
+        </li>
+      </ul>
+      <div id="input">
+        <textarea
+          class="original"
+          placeholder="paste original copy here..."
+        ></textarea>
+        <input class="btn submit" type="submit" value="Sanitize" />
+      </div>
+      <div id="output">
+        <textarea class="sanitized" placeholder="results..."></textarea>
+        <input class="btn clipboard" type="submit" value="Copy to clipboard" />
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        <span class="note"
+          >Questions & concerns -
+          <a href="mailto:huyb@google.com">@huyb</a></span
+        >
+      </p>
+    </footer>
+
+    <script type="text/javascript">
+      const _regex = /(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|(\d{1,2},)|(\d{4})|(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9](am|pm)/g;
+      const original = document.querySelector('.original');
+      const submit = document.querySelector('.submit');
+      const clipboard = document.querySelector('.clipboard');
+      const updated = document.querySelector('.sanitized');
+
+      const sanitize = () => {
+        const _stored = [];
+        const _serialized = original.value.split(' ');
+        _serialized.forEach(e => {
+          if (e.search(_regex) !== -1) {
+            _stored.push(e.replace(e, e.split('').join('&#xfeff;')));
+          } else {
+            _stored.push(e);
+          }
+        });
+        updated.value = _stored.join(' ');
+      };
+
+      const copyToClipboard = () => {
+        let compiledCopy = updated.value;
+        let dummyInput = document.createElement('input');
+        dummyInput.setAttribute('id', 'dummy-input');
+        document.body.appendChild(dummyInput);
+        document.getElementById('dummy-input').value = compiledCopy;
+        dummyInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummyInput);
+      };
+
+      submit.addEventListener('click', sanitize);
+      clipboard.addEventListener('click', copyToClipboard);
+    </script>
+  </body>
+</html>

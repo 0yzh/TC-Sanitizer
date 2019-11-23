@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="./style.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1 class="title">Date and time sanitizer</h1>
+      </nav>
+    </header>
+
+    <main>
+      <p>
+        - Replaces dates and times in legal / disclaimer copies with sanitized
+        versions using <span class="note">&amp;#xfeff;</span>. Eg: July -->
+        <span class="note">J&amp;#xfeff;u&amp;#xfeff;l&amp;#xfeff;y</span>
+      </p>
+      <p>
+        - Useful if you need to unlink dates and times on mobile devices or
+        email clients.
+      </p>
+      <p>
+        - This tool uses Regular Expression and the test case can be found at:
+        <span class="note"
+          ><a href="https://regexr.com/4pd70" target="_blank"
+            >https://regexr.com/4pd70</a
+          ></span
+        >
+      </p>
+      <h4>
+        Currently supports:
+      </h4>
+      <ul>
+        <li>
+          <p>Dates: ex, "Jan" | "January 1, 2020"</p>
+        </li>
+        <li>
+          <p>Times: ex, "11:59am" | "12:00pm"</p>
+        </li>
+      </ul>
+      <div id="input">
+        <textarea
+          class="original"
+          placeholder="paste original copy here..."
+        ></textarea>
+        <input class="btn submit" type="submit" value="Sanitize" />
+      </div>
+      <div id="output">
+        <textarea class="sanitized" placeholder="results..."></textarea>
+        <input class="btn clipboard" type="submit" value="Copy to clipboard" />
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        <span class="note"
+          >Questions & concerns -
+          <a href="mailto:huyb@google.com">@huyb</a></span
+        >
+      </p>
+    </footer>
+    <script src="./main.js"></script>
+  </body>
+</html>
